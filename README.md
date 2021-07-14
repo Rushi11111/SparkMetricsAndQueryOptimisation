@@ -117,8 +117,7 @@ Now, we have to create a new dashboard. After creating a dashboard, we will have
 Now, we are ready to add panel to our dashboard and query InfluxDB to show data on that panel. We can add various type of panels like Guage, Stat, Graph (old), Timeseries etc. To learn about querying data with InfluxQL, refer <a>https://docs.influxdata.com/influxdb/v1.8/query_language/explore-data/</a>.
 </li>
 
-<li>That was way to create a custom dashboard from scratch, however you can use following json file to directly import dashboard without doing any of the above steps.
-<a>(https://github.com/Rushi11111/Rushi11111/blob/main/dashboard.json)</a>. 
+  <li>That was way to create a custom dashboard from scratch, however you can use <a href="https://github.com/Rushi11111/Rushi11111/blob/main/dashboard.json">this</a> json file to directly import dashboard without doing any of the above steps. 
 </li>
 
 </ul>
