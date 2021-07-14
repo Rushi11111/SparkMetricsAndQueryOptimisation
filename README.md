@@ -243,12 +243,13 @@ Stats for the query on parquet file with dictionary:
 ![alt text](https://github.com/Rushi11111/Rushi11111/blob/main/EqualToQueryWithDict.png)
 
 <h2> End Notes </h2>
-Command for submitting quries to spark:
+Command for submitting quries to spark: 
+
 ```
-./bin/spark-submit --class <mainClass> --conf <configs for plugin> <other configs> --jars <path to custom hadoop-aws jar>,<path to custom hadoop-hdfs-client jar>,<path to plugin jar> <path to jar containing main class>
+./bin/spark-submit --class [mainClass] --conf [configs for plugin] [other configs] --jars [path to custom hadoop-aws jar],[path to custom hadoop-hdfs-client jar],[path to plugin jar] [path to jar containing main class]
 ```
 
-Here, configs for plugins can be:
+Here, [config for plugins] can be:
 ```
 ch.cern.CgroupMetrics                           : For getting OS metric (works with kubernetes).
 ch.cern.HDFSMetrics                             : For getting HDFS metrics (related to storage like bytes read, bytes written etc.)
