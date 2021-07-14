@@ -241,3 +241,20 @@ Query <i>"SELECT * FROM table WHERE likes=10000"</i> or <i>dataset.where("likes=
 
 Stats for the query on parquet file with dictionary:
 ![alt text](https://github.com/Rushi11111/Rushi11111/blob/main/EqualToQueryWithDict.png)
+
+<h2> End Notes </h2>
+Command for submitting quries to spark:
+```
+./bin/spark-submit --class <mainClass> --conf <configs for plugin> <other configs> --jars <path to custom hadoop-aws jar>,<path to custom hadoop-hdfs-client jar>,<path to plugin jar> <path to jar containing main class>
+```
+
+Here, configs for plugins can be:
+```
+ch.cern.CgroupMetrics                           : For getting OS metric (works with kubernetes).
+ch.cern.HDFSMetrics                             : For getting HDFS metrics (related to storage like bytes read, bytes written etc.)
+ch.cern.CloudFSMetrics                          : For getting cloud storage metrics.
+ch.cern.experimental.S3ATimeInstrumentation     : For getting s3a metrics.
+ch.cern.experimental.HDFSTimeInstrumentation    : For getting HDFS metrics (related to time like time for reading, cpu time for reading etc.)
+```
+
+For more information refer <a href="https://github.com/Rushi11111/SparkPlugin">this</a>.
