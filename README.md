@@ -7,7 +7,7 @@ For pushing metrics that are provided by Spark to InfluxDB, I have used graphite
 
 <b>NOTE</b> : Spark don't have a option of directly pushing metirc's data to InfluxDB.
 
-Now to push data with proper tags and measurements in InfluxDB we will have to use templates and do some configuration in InfluxDB's config file. Learn more about templates here : <a>https://docs.influxdata.com/influxdb/v1.8/supported_protocols/graphite/#:~:text=tags%20and%20measurements.-,Templates,-Templates%20allow%20matching</a>.
+Now to push data with proper tags and measurements in InfluxDB we will have to use templates and do some configuration in InfluxDB's config file. Learn more about templates <a href="https://docs.influxdata.com/influxdb/v1.8/supported_protocols/graphite/#:~:text=tags%20and%20measurements.-,Templates,-Templates%20allow%20matching">here</a>.
 
 Following is part that I have changed from default configs of InfluxDB:
 
@@ -123,7 +123,7 @@ Now, we are ready to add panel to our dashboard and query InfluxDB to show data 
 </ul>
 
 <h2>Adding Custom Metrics To InfluxDB</h2>
-Spark provides a lot of metrics (list of metrics: https://spark.apache.org/docs/3.1.2/monitoring.html#:~:text=List%20of%20available%20metrics%20providers), but for some use cases we may need some custom metrics.
+Spark provides a lot of metrics (list of metrics available <a href="https://spark.apache.org/docs/3.1.2/monitoring.html#:~:text=List%20of%20available%20metrics%20providers">here</a>), but for some use cases we may need some custom metrics.
 <br><br>
 Adding custom metrics is bit advanced and requires configuration of Spark source code and/or source code of other jars (like hadoop-aws and hadoop-hdfs-client for S3A metrics). In my case, I wanted to get metadata time, read time, seek time and some other metrics for reading/writing data from/to AWS S3.
 <br><br>
