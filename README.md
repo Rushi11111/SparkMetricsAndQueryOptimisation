@@ -215,11 +215,14 @@ public synchronized int read() throws IOException {
 Query <i>"SELECT * FROM table LIMIT 1"</i> or <i>dataset.limit(1).show()</i> consumed whole data from my parquet file. Here, size of my parquet folder is around 160 MB, has 8 row groups and 8 files.
 
 Here, spark doesn't wait to read footer of all parquet files but try to estimate number of tasks to start. Following is how spark estimates number of tasks to start,
-
+```
 Step 1: Decide total bytes, totalBytes = (sum of size of all parquet files) + (number of parquet files) * (4 * 1024 * 1024) </br>
 Step 2: Decide max bytes per core, bytesPerCore = totalBytes / (spark defualt parallelism) <br/>
 Step 3: Decide max split bytes, maxSplitBytes = max(bytesPerCore, (spark max partition bytes) ) <br/>
-Step 4: Now, spark will start ceil(totalBytes/maxSplitBytes) number of tasks. First task will be given first maxSplitBytes of file, second task will be given next maxSplitBytes of file, and so on. Row group will be assigned to task which has mid-point of that row group. For example in image shown below, row group 1 will be given to task 2, row group 2 will be given to task 4 and other tasks will just read footer.<br/>
+Step 4: Now, spark will start ceil(totalBytes/maxSplitBytes) number of tasks.
+```
+First task will be given first maxSplitBytes of file, second task will be given next maxSplitBytes of file, and so on. Row group will be assigned to task which has mid-point of that row group. For example in image shown below, row group 1 will be given to task 2, row group 2 will be given to task 4 and other tasks will just read footer.
+<br/>
 <br/>
   <p align="center">
     <img src="https://github.com/Rushi11111/Rushi11111/blob/main/task_row_group.png" alt="drawing" width="500"/>
