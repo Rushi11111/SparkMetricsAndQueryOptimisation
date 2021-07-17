@@ -236,7 +236,7 @@ Here are stats :
 In order to tune Spark to read less data, I decreased size of row groups and re-wrote my parquet file. In this case one task will be assigned multiple row groups and they will read only one row group for getting a row. Here are stats:
 ![alt text](https://github.com/Rushi11111/Rushi11111/blob/main/limit_1_small.png)
 
-<h3>Equal To Query</h3>
+<h3>Equal To Query (On Integer Column) </h3>
 Query <i>"SELECT * FROM table WHERE likes=10000"</i> or <i>dataset.where("likes=10000").show()</i> processed every bit of data from my dataset. Upon some analysis, I found that, there was no dictionary stored for chunks of 'likes' column. In order to make query faster and make it read less data, I had to increase dictionary size of parquet (by changing config 'parquet.dictionary.page.size'). Conversely, One could also decrease row group size (by changing config 'parquet.block.size') to make data of column chunks fit in default size of dictionary.
 
 <br/>Stats for the query on parquet file without dictionary:
@@ -244,6 +244,16 @@ Query <i>"SELECT * FROM table WHERE likes=10000"</i> or <i>dataset.where("likes=
 
 Stats for the query on parquet file with dictionary:
 ![alt text](https://github.com/Rushi11111/Rushi11111/blob/main/EqualToQueryWithDict.png)
+
+<h3>Equal To Query (On String Column) </h3>
+The case for equal to query on a string column is somewhat same.
+Query <i>"SELECT * FROM table WHERE user_description='Mother'</i> or <i>dataset.where("user_description='Mother'").show()</i> processed every bit of data.
+
+<br/>Stats for query without dictionary (in any row group) for column user_description:
+![alt text](https://github.com/Rushi11111/Rushi11111/blob/main/EqualToStringWithoutDict.png)
+
+Stats for same query after making dictionary available for column user_description (in every row group). Here, note that spark still reads around 65 MB, which is of footers and metadata.
+![alt text](https://github.com/Rushi11111/Rushi11111/blob/main/EqualToStringWithDict.png)
 
 <h2> End Notes </h2>
 Command for submitting quries to spark: 
