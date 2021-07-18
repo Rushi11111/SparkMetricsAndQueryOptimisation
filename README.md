@@ -252,7 +252,7 @@ Query <i>"SELECT * FROM table WHERE user_description='Mother'</i> or <i>dataset.
 <br/>Stats for query without dictionary (in any row group) for column user_description:
 ![alt text](https://github.com/Rushi11111/Rushi11111/blob/main/EqualToStringWithoutDict.png)
 
-Stats for same query after making dictionary available for column user_description (in every row group). Here, note that spark still reads around 65 MB, which is of footers and metadata:
+Stats for same query after making dictionary available for column user_description (in every row group). Here, note that spark still reads around 65 MB, which is because of footers and metadata, in this case size of dictionary increased as compared to that of integer column case:
 ![alt text](https://github.com/Rushi11111/Rushi11111/blob/main/EqualToStringWithDict.png)
 
 <h2> End Notes </h2>
